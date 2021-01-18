@@ -7,7 +7,7 @@ public class PunctualDemoUI : MonoBehaviour
 {
     [SerializeField] Toggle m_rHideUIToggle = default;
 
-    [SerializeField] SingularityPunctualComponent m_rSingularity = default;
+    [SerializeField] SingularityComponent m_rSingularity = default;
     [SerializeField] GameObject SingularitySphere = default;
     [SerializeField] SphereSpawner m_rSpawner = default;
     [SerializeField] GameObject m_rMenuSing = default;
@@ -50,7 +50,7 @@ public class PunctualDemoUI : MonoBehaviour
         m_rSingularity.m_fForce = m_rForcePowerSlider.GetValue();
         m_rSingularity.m_fRangeMax = m_rRangeSlider.GetValue();
         Vector3 scale = new Vector3(1f, 1f, 1f) * m_rRangeSlider.GetValue() * 2f;
-        SingularitySphere.transform.localScale = scale;
+        //SingularitySphere.transform.localScale = scale;
 
         m_rSpawner.spawnRate = m_rSpawnRateSlider.GetValue();
 
@@ -78,14 +78,14 @@ public class PunctualDemoUI : MonoBehaviour
                 label.text = "Attractive";
                 label.color = Color.red;
                 //SingularitySphere.GetComponent<MeshRenderer>().material.SetColor("Color_base", Color.red);
-                SingularitySphere.GetComponent<MeshRenderer>().material.color = Color.red;
+                //SingularitySphere.GetComponent<MeshRenderer>().material.color = Color.red;
             }
             else
             {
                 label.text = "Repulsive";
                 label.color = Color.blue;
                 //SingularitySphere.GetComponent<MeshRenderer>().material.SetColor("Color_base", Color.blue);
-                SingularitySphere.GetComponent<MeshRenderer>().material.color = Color.blue;
+                //SingularitySphere.GetComponent<MeshRenderer>().material.color = Color.blue;
             }
         }
     }

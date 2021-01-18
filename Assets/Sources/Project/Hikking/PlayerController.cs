@@ -8,14 +8,20 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
     SingularityTarget st;
-    [SerializeField] float speed = 15.0f;
-    [SerializeField] float jumpSpeed = 8.0f;
-    [SerializeField] float angularSpeed = 3.0f;
+    [SerializeField] float m_fSpeed = 15.0f;
+    [SerializeField] float m_fJumpSpeed = 8.0f;
+    [SerializeField] float m_fAngularSpeed = 3.0f;
     [SerializeField] float m_fCurrentRelativeSlopeAngle = 0f;
 
 
-    [SerializeField] float cameraRotation = 0.0f;
-    
+    [SerializeField] float m_fCameraRotation = 0.0f;
+
+
+    [SerializeField] bool m_bIsThrowEnable = false;
+    [SerializeField] float m_fThrowForce = 10f;
+    [SerializeField] GameObject m_rBallSpawn = default;
+    [SerializeField] GameObject m_rBallPrefab = default;
+
     // Use this for initialization
     void Start () 
     {
@@ -34,45 +40,33 @@ public class PlayerController : MonoBehaviour {
             Vector3 velocity = transform.forward * Input.GetAxisRaw("Vertical");
             velocity += transform.right * Input.GetAxisRaw("Horizontal");
             velocity.Normalize();
-            velocity *= speed;
+            velocity *= m_fSpeed;
 
             velocity.y = velocityY;
 
             if (Input.GetButton("Jump") /*&& isGrounded()*/)
             {
-                velocity.y = jumpSpeed;
+                velocity.y = m_fJumpSpeed;
             }
 
             rb.velocity = velocity;
 
             if (m_rGM != null && !m_rGM.IsDemoComplete)
-                rb.angularVelocity = Vector3.up * Input.GetAxis("Mouse X") * angularSpeed;
+                rb.angularVelocity = Vector3.up * Input.GetAxis("Mouse X") * m_fAngularSpeed;
         }
 
 
         if (m_rGM != null && !m_rGM.IsDemoComplete)
         {
-            cameraRotation += Input.GetAxis("Mouse Y") * angularSpeed;
-            cameraRotation = Mathf.Clamp(cameraRotation, -80.0f, 80.0f);
-            Camera.main.transform.localEulerAngles = Vector3.left * cameraRotation;
+            m_fCameraRotation += Input.GetAxis("Mouse Y") * m_fAngularSpeed;
+            m_fCameraRotation = Mathf.Clamp(m_fCameraRotation, -80.0f, 80.0f);
+            Camera.main.transform.localEulerAngles = Vector3.left * m_fCameraRotation;
         }
-    }
 
-    bool isGrounded()
-    {
-
-       
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position - Vector3.up, 0.3f);
-        foreach(Collider c in colliders)
+        if (m_bIsThrowEnable && Input.GetButtonDown("Fire1"))
         {
-            if(c.CompareTag("Ground"))
-            {
-                return true;
-            }
+            ThrowABall();
         }
-
-        return false;
     }
 
     bool IsSlopeWalkable()
@@ -102,5 +96,19 @@ public class PlayerController : MonoBehaviour {
 
         return false;
 
+    }
+
+    void ThrowABall()
+    {
+        if (m_rBallPrefab != null)
+        {
+            GameObject go = Instantiate<GameObject>(m_rBallPrefab);
+            go.transform.position = m_rBallSpawn.transform.position;
+            go.transform.rotation = m_rBallSpawn.transform.rotation;
+
+            Vector3 force = m_rBallSpawn.transform.forward * m_fThrowForce;
+
+            go.GetComponent<Rigidbody>().AddForce(force);
+        }
     }
 }
