@@ -6,13 +6,15 @@ public class SingularityPlanarComponent : SingularityComponent
 {
     [SerializeField] GameObject m_rSourceB = null;
     [SerializeField] GameObject m_rSourceC = null;
+
     [SerializeField] Vector3 m_vPosSourceD = Vector3.zero;
+    [SerializeField] Vector3 m_vPlanarNormal = Vector3.zero;
 
     Vector3 PosProjected = Vector3.zero;
 
 
     //Check if the projected point is within the quad formed by the four points of the singularity
-    bool CheckIfWithinSegement(Vector3 _posProjected, Vector3 _planeNormal)
+    bool CheckIfWithinSegement(Vector3 _posProjected, Vector3 _TargetPos, Vector3 _planeNormal)
     {
         //     ABl
         //      |
@@ -47,8 +49,12 @@ public class SingularityPlanarComponent : SingularityComponent
 
         if (check[0] && check[1] && check[2] && check[3])
         {
-            return true;
+            if (Vector3.Dot(_TargetPos, _planeNormal) < 0f)
+            {
+                return true;
+            }
         }
+
         return false;
     }
 
@@ -58,7 +64,7 @@ public class SingularityPlanarComponent : SingularityComponent
         Vector3 vectorSegementLeft = Vector3.Cross(vectorSegement, _planeNormal);
         Vector3 SegementToProjected = _posProjected - _point1;
 
-        return (Vector3.Dot(vectorSegementLeft, SegementToProjected) > 0f) ? false : true;
+        return (Vector3.Dot(vectorSegementLeft, SegementToProjected) < 0f) ? false : true;
     }
 
     /// <summary>
@@ -83,21 +89,28 @@ public class SingularityPlanarComponent : SingularityComponent
     {
         Vector3 axialVectorU = CalcAxialVector(transform.position, m_rSourceB.transform.position);
         Vector3 axialVectorV = CalcAxialVector(transform.position, m_rSourceC.transform.position);
-        Vector3 planeNormal = CalcPlaneNormal(axialVectorU, axialVectorV);
+        CalcPlaneNormal(axialVectorU, axialVectorV);
 
-        Vector3 posProjected = CalcProjection(_targetPos, planeNormal);
+        Vector3 posProjected = CalcProjection(_targetPos, m_vPlanarNormal);
 
         //Debug//////////
         PosProjected = posProjected;
         /////////////////
+        
 
         Vector3 force = CalcAxialVector(_targetPos, posProjected);
-        return force * GenerateForce(posProjected, _targetPos);
+
+        if (CheckIfWithinSegement(posProjected, _targetPos, m_vPlanarNormal))
+        {
+            return force * GenerateForce(posProjected, _targetPos);
+        }
+
+        return Vector3.zero;
     }
 
-    Vector3 CalcPlaneNormal(Vector3 _axialVectorU, Vector3 _axialVectorV)
+    void CalcPlaneNormal(Vector3 _axialVectorU, Vector3 _axialVectorV)
     {
-        return Vector3.Cross(_axialVectorV, _axialVectorU);
+        m_vPlanarNormal = (Vector3.Cross(_axialVectorV, _axialVectorU)).normalized;
     }
 
 
@@ -113,19 +126,41 @@ public class SingularityPlanarComponent : SingularityComponent
         {
             Gizmos.color = m_cColorNegative;
         }
+        //From A to B
         Gizmos.DrawLine(transform.position, m_rSourceB.transform.position);
+        //From A to C
         Gizmos.DrawLine(transform.position, m_rSourceC.transform.position);
+        //From B to C
         Gizmos.DrawLine(m_rSourceB.transform.position, m_rSourceC.transform.position);
+
+        //Calculating Position of source D
         Vector3 posD = (m_rSourceB.transform.position - transform.position) + (m_rSourceC.transform.position - transform.position) + transform.position;
+
+        //From B to D
         Gizmos.DrawLine(m_rSourceB.transform.position, posD);
+        //From C to D
         Gizmos.DrawLine(m_rSourceC.transform.position, posD);
+        //From A to D
         Gizmos.DrawLine(transform.position, posD);
 
+        //Draw range influence
+        //From A
+        Gizmos.DrawLine(transform.position, transform.position + (m_vPlanarNormal * m_fRangeMax));
+        //From B
+        Gizmos.DrawLine(m_rSourceB.transform.position, m_rSourceB.transform.position + (m_vPlanarNormal * m_fRangeMax));
+        //From C
+        Gizmos.DrawLine(m_rSourceC.transform.position, m_rSourceC.transform.position + (m_vPlanarNormal * m_fRangeMax));
+        //From D
+        Gizmos.DrawLine(posD, posD + (m_vPlanarNormal * m_fRangeMax));
+
+        //Draw sources spheres
         Gizmos.color = m_cColorSource;
         Gizmos.DrawSphere(transform.position, 0.25f);
         Gizmos.DrawSphere(m_rSourceB.transform.position, 0.25f);
         Gizmos.DrawSphere(m_rSourceC.transform.position, 0.25f);
         Gizmos.DrawSphere(posD, 0.25f);
+
+        
 
         Gizmos.color = Color.white;
         Gizmos.DrawSphere(PosProjected, 0.15f);
