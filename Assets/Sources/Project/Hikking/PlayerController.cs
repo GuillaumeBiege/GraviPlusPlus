@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
 
             velocity.y = velocityY;
 
-            if (Input.GetButton("Jump") /*&& isGrounded()*/)
+            if (Input.GetButton("Jump"))
             {
                 velocity.y = m_fJumpSpeed;
             }
@@ -53,8 +53,17 @@ public class PlayerController : MonoBehaviour {
 
             if (m_rGM != null && !m_rGM.IsDemoComplete)
                 rb.angularVelocity = Vector3.up * Input.GetAxis("Mouse X") * m_fAngularSpeed;
-        }
 
+
+            //Temporary solution to better show the change on the relative altitude
+            //Change the player forward vector function of the current gravity summ
+            if (st.m_vCurrentGravityDir != Vector3.zero)
+            {
+                transform.forward = Vector3.Cross( st.m_vCurrentGravityDir, transform.right);
+            }
+            
+        }
+        
 
         if (m_rGM != null && !m_rGM.IsDemoComplete)
         {
@@ -67,6 +76,8 @@ public class PlayerController : MonoBehaviour {
         {
             ThrowABall();
         }
+
+
     }
 
     bool IsSlopeWalkable()
