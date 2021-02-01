@@ -1523,11 +1523,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7791f8856e2f94d4ca50a77cc8210aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  jumpSpeed: 8
-  angularSpeed: 3
+  m_fSpeed: 15
+  m_fJumpSpeed: 8
+  m_fAngularSpeed: 3
   m_fCurrentRelativeSlopeAngle: 0
-  cameraRotation: 0
+  m_fCameraRotation: 0
+  m_bIsThrowEnable: 0
+  m_fThrowForce: 10
+  m_rBallSpawn: {fileID: 0}
+  m_rBallPrefab: {fileID: 0}
 --- !u!4 &961335406
 Transform:
   m_ObjectHideFlags: 0
@@ -2978,6 +2982,18 @@ PrefabInstance:
     - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
       propertyPath: m_LocalPosition.x
