@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1190,11 +1190,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7791f8856e2f94d4ca50a77cc8210aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  jumpSpeed: 8
-  angularSpeed: 3
+  m_fSpeed: 15
+  m_fJumpSpeed: 8
+  m_fAngularSpeed: 3
   m_fCurrentRelativeSlopeAngle: 0
-  cameraRotation: 0
+  m_fCameraRotation: 0
+  m_bIsThrowEnable: 0
+  m_fThrowForce: 10
+  m_rBallSpawn: {fileID: 0}
+  m_rBallPrefab: {fileID: 0}
 --- !u!4 &961335406
 Transform:
   m_ObjectHideFlags: 0
@@ -2189,7 +2193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 238.52502, y: -176.8375}
+  m_AnchoredPosition: {x: 312, y: -223}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1684380454
