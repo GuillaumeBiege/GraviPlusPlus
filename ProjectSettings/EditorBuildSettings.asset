@@ -9,12 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 0439d0eb335f0964aa7cf5445261bff6
   - enabled: 1
-    path: Assets/Scenes/PunctualDemo.unity
+    path: Assets/Scenes/Punctual/Expo/PunctualExposition.unity
     guid: 9a91de407b5ebc046a2c66c39cd79d8d
   - enabled: 1
-    path: Assets/Scenes/Punctual/PunctualCliff.unity
+    path: Assets/Scenes/Punctual/Demo/PunctualCliff.unity
     guid: 5c18f91d66b0dbe43b2e0400c990c466
   - enabled: 1
-    path: Assets/Scenes/Punctual/PunctualLandMine.unity
+    path: Assets/Scenes/Punctual/Demo/PunctualLandMine.unity
     guid: f7a6d7d1eefe3c94e8b05e101bf5702f
+  - enabled: 1
+    path: Assets/Scenes/Axial/Demo/AxialGrenade.unity
+    guid: cb6b142f7d9846b468fabd14f2b65170
+  - enabled: 1
+    path: Assets/Scenes/Planar/Demo/PlanarHill.unity
+    guid: 07d1fc2bba6469b40be63b6667e6a8df
+  - enabled: 1
+    path: Assets/Scenes/Axial/Expo/AxialExposition.unity
+    guid: 9ed09a5bcfc1b7d42af6d7271b097760
+  - enabled: 1
+    path: Assets/Scenes/Planar/Expo/PlanarExposition.unity
+    guid: b5ecb7d10fc34f842b7d3d1eb33d9519
   m_configObjects: {}
