@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SingularityPlanarComponent : SingularityComponent
 {
-    [SerializeField] GameObject m_rSourceB = null;
-    [SerializeField] GameObject m_rSourceC = null;
+    [SerializeField] protected GameObject m_rSourceB = null;
+    [SerializeField] protected GameObject m_rSourceC = null;
 
-    [SerializeField] Vector3 m_vPosSourceD = Vector3.zero;
-    [SerializeField] Vector3 m_vPlanarNormal = Vector3.zero;
+    [SerializeField] protected Vector3 m_vPosSourceD = Vector3.zero;
+    [SerializeField] protected Vector3 m_vPlanarNormal = Vector3.zero;
 
-    Vector3 PosProjected = Vector3.zero;
+    protected Vector3 m_vPosProjected = Vector3.zero;
 
 
     //Check if the projected point is within the quad formed by the four points of the singularity
@@ -46,10 +46,11 @@ public class SingularityPlanarComponent : SingularityComponent
         check[3] = DotProductSegementDetection(m_rSourceC.transform.position, transform.position, _planeNormal, _posProjected);
 
 
-
+        //Check if the projected point is within the singularity bondaries
         if (check[0] && check[1] && check[2] && check[3])
         {
-            if (Vector3.Dot(_TargetPos, _planeNormal) < 0f)
+            //Check if the target object is above the singularity
+            if (Vector3.Dot(_TargetPos- transform.position, _planeNormal) > 0f)
             {
                 return true;
             }
@@ -58,6 +59,14 @@ public class SingularityPlanarComponent : SingularityComponent
         return false;
     }
 
+    /// <summary>
+    /// Check if the projected position is on the right of a vector formed by two position
+    /// </summary>
+    /// <param name="_point1">First position of the segement/Vector</param>
+    /// <param name="_point2">First position of the segement/Vector</param>
+    /// <param name="_planeNormal">Normal of the singularity plane</param>
+    /// <param name="_posProjected">Projected point of the target object on the plane</param>
+    /// <returns></returns>
     bool DotProductSegementDetection(Vector3 _point1, Vector3 _point2, Vector3 _planeNormal, Vector3 _posProjected)
     {
         Vector3 vectorSegement = _point2 - _point1;
@@ -91,18 +100,14 @@ public class SingularityPlanarComponent : SingularityComponent
         Vector3 axialVectorV = CalcAxialVector(transform.position, m_rSourceC.transform.position);
         CalcPlaneNormal(axialVectorU, axialVectorV);
 
-        Vector3 posProjected = CalcProjection(_targetPos, m_vPlanarNormal);
+        m_vPosProjected = CalcProjection(_targetPos, m_vPlanarNormal);
 
-        //Debug//////////
-        PosProjected = posProjected;
-        /////////////////
-        
 
-        Vector3 force = CalcAxialVector(_targetPos, posProjected);
+        Vector3 force = CalcAxialVector(_targetPos, m_vPosProjected);
 
-        if (CheckIfWithinSegement(posProjected, _targetPos, m_vPlanarNormal))
+        if (CheckIfWithinSegement(m_vPosProjected, _targetPos, m_vPlanarNormal))
         {
-            return force * GenerateForce(posProjected, _targetPos);
+            return force * GenerateForce(m_vPosProjected, _targetPos);
         }
 
         return Vector3.zero;
@@ -163,6 +168,6 @@ public class SingularityPlanarComponent : SingularityComponent
         
 
         Gizmos.color = Color.white;
-        Gizmos.DrawSphere(PosProjected, 0.15f);
+        Gizmos.DrawSphere(m_vPosProjected, 0.15f);
     }
 }
