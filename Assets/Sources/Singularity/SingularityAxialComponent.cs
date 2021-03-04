@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SingularityAxialComponent : SingularityComponent
 {
-    [SerializeField] GameObject m_rSourceB = null;
+    public GameObject m_rSourceB = null;
 
 
     bool CheckIfWithinSegement(Vector3 _posProjected, Vector3 _axialVector)
