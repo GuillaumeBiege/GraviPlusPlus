@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PunctualDemoUI : MonoBehaviour
 {
@@ -88,5 +89,10 @@ public class PunctualDemoUI : MonoBehaviour
                 //SingularitySphere.GetComponent<MeshRenderer>().material.color = Color.blue;
             }
         }
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
