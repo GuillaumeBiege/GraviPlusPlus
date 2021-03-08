@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SingularityPlanarComponent : SingularityComponent
 {
-    [SerializeField] protected GameObject m_rSourceB = null;
-    [SerializeField] protected GameObject m_rSourceC = null;
+    public GameObject m_rSourceB = null;
+    public GameObject m_rSourceC = null;
 
-    [SerializeField] protected Vector3 m_vPosSourceD = Vector3.zero;
-    [SerializeField] protected Vector3 m_vPlanarNormal = Vector3.zero;
+    public Vector3 m_vPosSourceD = Vector3.zero;
+
+    public Vector3 m_vPlanarNormal = Vector3.zero;
 
     protected Vector3 m_vPosProjected = Vector3.zero;
 

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[ExecuteInEditMode]
 public class SingularityRenderer : MonoBehaviour
 {
     public enum TypeSingularity
@@ -102,6 +104,61 @@ public class SingularityRenderer : MonoBehaviour
 
     void PlanarMeshDisplay()
     {
+        SingularityPlanarComponent planar = m_rSingulatity as SingularityPlanarComponent;
+        if (planar)
+        {
+            Vector3[] vertices = m_rMesh.mesh.vertices;
 
+            Vector3 localPosSourceD = planar.m_rSourceB.transform.localPosition + planar.m_rSourceC.transform.localPosition;
+
+            //Bottom
+                //Source A
+            vertices[7] = Vector3.zero;
+            vertices[14] = Vector3.zero;
+            vertices[18] = Vector3.zero;
+
+                //Source B
+            vertices[6] = planar.m_rSourceB.transform.localPosition;
+            vertices[12] = planar.m_rSourceB.transform.localPosition;
+            vertices[20] = planar.m_rSourceB.transform.localPosition;
+
+                //Source D
+            vertices[0] = localPosSourceD;
+            vertices[13] = localPosSourceD;
+            vertices[21] = localPosSourceD;
+
+                //Source C
+            vertices[1] = planar.m_rSourceC.transform.localPosition;
+            vertices[15] = planar.m_rSourceC.transform.localPosition;
+            vertices[19] = planar.m_rSourceC.transform.localPosition;
+
+            //Top
+            Vector3 rangeVector = planar.m_vPlanarNormal * planar.m_fRangeMax;
+
+                //Source A
+            vertices[5] = rangeVector;
+            vertices[11] = rangeVector;
+            vertices[17] = rangeVector;
+
+                //Source B
+            vertices[4] = planar.m_rSourceB.transform.localPosition + rangeVector;
+            vertices[10] = planar.m_rSourceB.transform.localPosition + rangeVector;
+            vertices[23] = planar.m_rSourceB.transform.localPosition + rangeVector;
+
+                //Source D
+            vertices[2] = localPosSourceD + rangeVector;
+            vertices[8] = localPosSourceD + rangeVector;
+            vertices[22] = localPosSourceD + rangeVector;
+
+                //Source C
+            vertices[3] = planar.m_rSourceC.transform.localPosition + rangeVector;
+            vertices[9] = planar.m_rSourceC.transform.localPosition + rangeVector;
+            vertices[16] = planar.m_rSourceC.transform.localPosition + rangeVector;
+
+            //Applying the changes
+            m_rMesh.mesh.vertices = vertices;
+            m_rMesh.mesh.RecalculateBounds();
+            m_rMesh.mesh.RecalculateNormals();
+        }
     }
 }
