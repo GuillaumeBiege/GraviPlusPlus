@@ -2568,5 +2568,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1227082885}
+    - target: {fileID: 7387256037966811922, guid: 1d54563aab7ca1d43a1c8af896dad3ba, type: 3}
+      propertyPath: m_Text
+      value: 'Objectif : Use the R button to throw a rock and resolve the puzzle'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387256037966811922, guid: 1d54563aab7ca1d43a1c8af896dad3ba, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d54563aab7ca1d43a1c8af896dad3ba, type: 3}

@@ -45,14 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb4fca7596cb1d4c87a7e7da922f897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fForce: 5
+  m_fForce: 50
   m_fForceClampMin: 0
   m_fForceClampMax: 100
   m_fRangeMin: 0.1
   m_fRangeMax: 5
   m_bIsPositive: 1
-  m_eCurve: 0
-  m_iDividePower: 1
+  m_eCurve: 2
+  m_iDividePower: 2
 --- !u!114 &-6933173519563379825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c41bdda673fb2498c55a59822349f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rSingulatity: {fileID: 0}
+  m_rMesh: {fileID: 0}
+  m_rMeshRenderer: {fileID: 0}
   m_eTypeSingularity: 0
+  m_cColorPositive: {r: 1, g: 0, b: 0, a: 1}
+  m_cColorNegative: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &8535704575411397631
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 8535704575411397631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 8036132489725684072}
   m_RootOrder: 0
@@ -125,7 +130,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff303cfde6087a845940eee594cb0cad, type: 2}
+  - {fileID: 2100000, guid: 7b48bcbb7dab64d4ba0636fba06ebbaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

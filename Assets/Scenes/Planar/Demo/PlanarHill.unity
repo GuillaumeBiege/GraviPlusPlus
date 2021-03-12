@@ -843,6 +843,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7387256037966811922, guid: 1d54563aab7ca1d43a1c8af896dad3ba, type: 3}
+      propertyPath: m_Text
+      value: 'Objectif : Find a way to avoid the slope'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d54563aab7ca1d43a1c8af896dad3ba, type: 3}
 --- !u!1 &961335399
@@ -2056,18 +2060,6 @@ PrefabInstance:
     - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 785286243146050953, guid: cbc087af6e36d114aa74d07a756082b2, type: 3}
       propertyPath: m_LocalPosition.x

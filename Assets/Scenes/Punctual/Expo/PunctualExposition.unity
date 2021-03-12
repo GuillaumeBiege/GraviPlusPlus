@@ -583,11 +583,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
+    m_DisabledColor: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 772991501}
   toggleTransition: 1
-  graphic: {fileID: 213255106}
+  graphic: {fileID: 0}
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
@@ -1242,19 +1242,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1294,11 +1294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 306
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -221
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8018297319513637401, guid: 5131224c4e66994458ccbdd857a01563, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2135,29 +2135,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2382401428903946535, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2382401428903946535, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2382401428903946535, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868092870282355351, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d366b2e0915d66144a9220d996992480, type: 2}
     - target: {fileID: 8036132489725684070, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
       propertyPath: m_Name
       value: Punctual
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036132489725684070, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8036132489725684072, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
       propertyPath: m_RootOrder
@@ -2202,22 +2182,6 @@ PrefabInstance:
     - target: {fileID: 8036132489725684072, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036132489725684073, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_eCurve
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036132489725684073, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_fForce
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036132489725684073, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_fRangeMax
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036132489725684073, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
-      propertyPath: m_iDividePower
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14fcaa8f0598924e9ed8b100f2ce528, type: 3}
@@ -2950,7 +2914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3033,7 +2997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3137,7 +3101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3575,7 +3539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -959,6 +959,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7387256037966811922, guid: 1d54563aab7ca1d43a1c8af896dad3ba, type: 3}
+      propertyPath: m_Text
+      value: "Objectif : Find your within the \rlabyrinth"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d54563aab7ca1d43a1c8af896dad3ba, type: 3}
 --- !u!1 &961335399

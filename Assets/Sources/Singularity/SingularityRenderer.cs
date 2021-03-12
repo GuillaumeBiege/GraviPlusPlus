@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[ExecuteInEditMode]
+
 public class SingularityRenderer : MonoBehaviour
 {
     public enum TypeSingularity
@@ -13,16 +13,24 @@ public class SingularityRenderer : MonoBehaviour
         PLANAR
     }
 
-    SingularityComponent m_rSingulatity = default;
-    MeshFilter m_rMesh = default;
+    [SerializeField] SingularityComponent m_rSingulatity = default;
+    [SerializeField] MeshFilter m_rMesh = default;
+    [SerializeField] MeshRenderer m_rMeshRenderer = default;
 
     [SerializeField] TypeSingularity m_eTypeSingularity = TypeSingularity.PUNCTUAL;
     Vector3 m_vOldScale = Vector3.zero;
+
+    [SerializeField] Color m_cColorPositive = Color.red;
+    [SerializeField] Color m_cColorNegative = Color.blue;
 
     private void Awake()
     {
         m_rSingulatity = GetComponent<SingularityComponent>();
         m_rMesh = GetComponentInChildren<MeshFilter>();
+        m_rMeshRenderer = GetComponentInChildren<MeshRenderer>();
+
+        m_cColorPositive.a = 0.2f;
+        m_cColorNegative.a = 0.2f;
 
     }
 
@@ -31,6 +39,7 @@ public class SingularityRenderer : MonoBehaviour
     {
         if (m_rSingulatity && m_rMesh)
         {
+            //Mesh deformation
             switch (m_eTypeSingularity)
             {
                 case TypeSingularity.PUNCTUAL:
@@ -44,6 +53,19 @@ public class SingularityRenderer : MonoBehaviour
                     break;
                 default:
                     break;
+            }
+
+            //Attraction/Repulsion color change
+            if (m_rMeshRenderer)
+            {
+                if (m_rSingulatity.m_bIsPositive)
+                {
+                    m_rMeshRenderer.material.SetColor("_BaseColor", m_cColorPositive);
+                }
+                else
+                {
+                    m_rMeshRenderer.material.SetColor("_BaseColor", m_cColorNegative);
+                }
             }
         }
     }
@@ -87,7 +109,7 @@ public class SingularityRenderer : MonoBehaviour
             m_rMesh.transform.localScale -= m_vOldScale;
 
             //Generating the new size
-            Vector3 meshScale = new Vector3(m_rSingulatity.m_fRangeMax, direction.magnitude / 2f, m_rSingulatity.m_fRangeMax);
+            Vector3 meshScale = new Vector3(m_rSingulatity.m_fRangeMax*2f, direction.magnitude / 2f, m_rSingulatity.m_fRangeMax*2f);
 
             //Applying new scale
             m_rMesh.transform.localScale += meshScale;
