@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] private bool IsPressed = false;
-
+    //References 
     private Rigidbody rb = default;
+    private SpringJoint[] sjs = default;
+
+    //Variables
+    [SerializeField] private bool IsPressed = false;
+    [SerializeField] private float releaseDelay = 0.25f;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        sjs = GetComponents<SpringJoint>();
     }
 
     // Update is called once per frame
@@ -50,14 +57,14 @@ public class Ball : MonoBehaviour
             
             IsPressed = false;
             rb.isKinematic = false;
-
+            Invoke("ReleaseBall", releaseDelay);
         }
 
         if (IsPressed)
         {
             Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-            rb.position = new Vector3(worldPosition.x, 0f, worldPosition.y);
+            rb.position = new Vector3(worldPosition.x, 0f, worldPosition.z);
         }
         
     }
@@ -74,6 +81,15 @@ public class Ball : MonoBehaviour
 
         return hit;
     }
+
+    private void ReleaseBall()
+    {
+        foreach (SpringJoint sj in sjs)
+        {
+            Destroy(sj);
+        }
+    }
+
 
     //private void OnMouseDown()
     //{
