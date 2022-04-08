@@ -17,7 +17,7 @@ public class SingularityManager : MonoBehaviour
 
                 if (_instance == null)
                 {
-                    GameObject container = new GameObject("@SingletonManager");
+                    GameObject container = new GameObject("@SingularityManager");
                     _instance = container.AddComponent<SingularityManager>();
                 }
             }
