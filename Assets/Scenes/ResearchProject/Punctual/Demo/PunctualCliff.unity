@@ -863,7 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fSpeed: 15
   m_fJumpSpeed: 8
-  m_fAngularSpeed: 3
+  m_fAngularSpeed: 8
   m_fCurrentRelativeSlopeAngle: 0
   m_fCameraRotation: 0
   m_bIsThrowEnable: 0

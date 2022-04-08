@@ -6,11 +6,15 @@ public class PlayerController : MonoBehaviour {
 
     GameManager m_rGM = default;
 
+    //Component references
     Rigidbody rb;
     SingularityTarget st;
+
+
+    //Variables
     [SerializeField] float m_fSpeed = 15.0f;
     [SerializeField] float m_fJumpSpeed = 8.0f;
-    [SerializeField] float m_fAngularSpeed = 3.0f;
+    [SerializeField] float m_fAngularSpeed = 20.0f;
     [SerializeField] float m_fCurrentRelativeSlopeAngle = 0f;
 
 
@@ -51,8 +55,10 @@ public class PlayerController : MonoBehaviour {
 
             rb.velocity = velocity;
 
-            if (m_rGM != null && !m_rGM.IsDemoComplete)
+            if (m_rGM != null && !m_rGM.IsDemoComplete && Input.GetMouseButton(1))
                 rb.angularVelocity = Vector3.up * Input.GetAxis("Mouse X") * m_fAngularSpeed;
+            else if (!Input.GetMouseButton(1))
+                rb.angularVelocity = Vector3.zero;
 
 
             ////Temporary solution to better show the change on the relative altitude
@@ -61,11 +67,11 @@ public class PlayerController : MonoBehaviour {
             //{
             //    transform.forward = Vector3.Cross( st.m_vCurrentGravityDir, transform.right);
             //}
-            
-        }
-        
 
-        if (m_rGM != null && !m_rGM.IsDemoComplete)
+        }
+
+
+        if (m_rGM != null && !m_rGM.IsDemoComplete && Input.GetMouseButton(1))
         {
             m_fCameraRotation += Input.GetAxis("Mouse Y") * m_fAngularSpeed;
             m_fCameraRotation = Mathf.Clamp(m_fCameraRotation, -80.0f, 80.0f);

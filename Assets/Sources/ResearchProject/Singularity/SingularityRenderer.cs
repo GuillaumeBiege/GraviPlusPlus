@@ -20,8 +20,11 @@ public class SingularityRenderer : MonoBehaviour
     [SerializeField] TypeSingularity m_eTypeSingularity = TypeSingularity.PUNCTUAL;
     Vector3 m_vOldScale = Vector3.zero;
 
+    [SerializeField] bool m_bAutoColor = true;
     [SerializeField] Color m_cColorPositive = Color.red;
     [SerializeField] Color m_cColorNegative = Color.blue;
+    [SerializeField] Color m_cColorSingularity = Color.white;
+
 
     private void Awake()
     {
@@ -56,16 +59,24 @@ public class SingularityRenderer : MonoBehaviour
             }
 
             //Attraction/Repulsion color change
-            if (m_rMeshRenderer)
+            if (m_rMeshRenderer != null)
             {
-                if (m_rSingulatity.m_bIsPositive)
+                if (m_bAutoColor)
                 {
-                    m_rMeshRenderer.material.SetColor("_BaseColor", m_cColorPositive);
+                    if (m_rSingulatity.m_bIsPositive)
+                    {
+                        m_rMeshRenderer.material.SetColor("_BaseColor", m_cColorPositive);
+                    }
+                    else
+                    {
+                        m_rMeshRenderer.material.SetColor("_BaseColor", m_cColorNegative);
+                    }
                 }
                 else
                 {
-                    m_rMeshRenderer.material.SetColor("_BaseColor", m_cColorNegative);
+                    m_rMeshRenderer.material.SetColor("_BaseColor", m_cColorSingularity);
                 }
+                
             }
         }
     }
